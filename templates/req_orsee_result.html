@@ -1,0 +1,22 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<h3>Requête pour récupérer la liste des participants inscrits à la session</h3>
+
+<div class="card bg-light">
+    <div class="card-body">
+        <p class="card-text">
+            Copier / Coller la requête requête ci-dessous dans phpMyAdmin
+            (<a href="http://leem.umontpellier.fr/phpmyadmin/" target="_blank">ici</a>)
+        </p>
+
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+<code>
+    {{ requete }}
+</code>
+{% endblock %}

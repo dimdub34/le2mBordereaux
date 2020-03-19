@@ -1,0 +1,33 @@
+{% extends "templatebord.html" %}
+
+{% block content %}
+
+{% for p in participants %}
+<div class="card">
+    <div class="card-header">
+        {{ req_infos.expe }} - {{ req_infos.date }} - {{ req_infos.heure }} - Souche {{ loop.index }}
+    </div>
+    <div class="card-body">
+        <p class="card-text float-right">
+            Signature
+        </p>
+        <p class="card-text">
+            Forfait de déplacement <input type="checkbox">2&euro; <input type="checkbox">6&euro;<br>
+            <br>
+            Montant en chiffres :<br>
+            Montant en lettres : <br>
+            <br>
+            Remis à {{ p.0 }} {{ p.1 }}<br>
+        </p>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+{% if loop.index % 5 == 0 %}
+    <div style='page-break-after: always'></div>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

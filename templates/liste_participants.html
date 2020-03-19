@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<h3>Créer les bordereaux</h3>
+
+<div class="card bg-light">
+    <div class="card-body">
+        <p class="card-text">
+        {% if req_infos %}
+            Expérience : {{ req_infos.expe }}, Date : {{ req_infos.date }}, Heure : {{ req_infos.heure }}<br>
+            Utiliser le bouton ci-dessous pour télécharger le fichier csv contenant la liste des participants
+        {% else %}
+            Il faut saisir les informations de la session sur <a href="{{ url_for('req_orsee') }}">cette page</a>.
+        {% endif %}
+        </p>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+{% if req_infos %}
+    <div class="row">
+        <form class="form-inline center-block" action="{{ url_for('liste_participants') }}" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="input-group">
+                {% if form.input_file.errors %}
+                    <label class="btn btn-light input-group-addon" for="my-file-selector">
+                    {{ form.input_file(id="my-file-selector", class="is-invalid") }}
+                    </label>
+                    <div class="invalid-feedback">
+                        {% for error in form.input_file.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                <label class="btn btn-light input-group-addon" for="my-file-selector">
+                    {{ form.input_file(id="my-file-selector") }}
+                </label>
+                {% endif %}
+            </div>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+{% endif %}
+
+{% endblock %}
+
