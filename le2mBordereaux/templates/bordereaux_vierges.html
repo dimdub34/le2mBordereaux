@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<div class="card bg-light d-print-none">
+    <div class="card-body">
+        <p class="card-text">
+        {% if req_infos %}
+            Expérience : {{ req_infos.expe }}, le {{ req_infos.date }} à Heure : {{ req_infos.heure }}<br>
+        {% else %}
+            Il faut saisir les informations de la session sur <a href="{{ url_for('req_orsee') }}">cette page</a>.
+        {% endif %}
+        </p>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+{% if req_infos %}
+<form method="post" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <div class="form-group">
+            {{ form.nombre.label(class="form-control-label") }}
+            {% if form.nombre.errors %}
+                {{ form.nombre(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.nombre.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.nombre(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.souche_deb.label(class="form-control-label") }}
+            {% if form.souche_deb.errors %}
+                {{ form.souche_deb(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.souche_deb.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.souche_deb(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endif %}
+
+{% endblock %}

@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<h3>Créer les bordereaux</h3>
+<h3>Liste des participants</h3>
 
 <div class="card bg-light">
     <div class="card-body">
         <p class="card-text">
         {% if req_infos %}
             Expérience : {{ req_infos.expe }}, Date : {{ req_infos.date }}, Heure : {{ req_infos.heure }}<br>
-            Utiliser le bouton ci-dessous pour télécharger le fichier csv contenant la liste des participants
         {% else %}
             Il faut saisir les informations de la session sur <a href="{{ url_for('req_orsee') }}">cette page</a>.
         {% endif %}
@@ -20,7 +19,7 @@
 <p>&nbsp;</p>
 
 {% if req_infos %}
-    <div class="row">
+    <div class="row d-print-none">
         <form class="form-inline center-block" action="{{ url_for('liste_participants') }}" method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="input-group">
@@ -43,6 +42,44 @@
         </form>
     </div>
 {% endif %}
+
+<p>&nbsp;</p>
+
+{% if participants %}
+    <div class="d-print-none text-right">
+        <button class="btn btn-primary" type="button" onclick="window.print();">Imprimer</button>
+        <p>&nbsp;</p>
+    </div>
+
+<table class="table table-sm table-striped">
+    <thead>
+    <tr>
+        <th>ORSEE-ID</th>
+        <th>Genre</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Mail</th>
+        <th>Déb. Etud. Sup</th>
+        <th>Discipline</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in participants %}
+    <tr>
+        <td>{{ p.uid }}</td>
+        <td>{{ p.genre }}</td>
+        <td>{{ p.nom }}</td>
+        <td>{{ p.prenom }}</td>
+        <td>{{ p.mail }}</td>
+        <td>{{ p.deb_etudes }}</td>
+        <td>{{ p.etudes }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<p>&nbsp;</p>
 
 {% endblock %}
 

@@ -1,0 +1,57 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<div class="card bg-light d-print-none">
+    <div class="card-body">
+        <p class="card-text">
+        {% if req_infos %}
+            Expérience : {{ req_infos.expe }}, le {{ req_infos.date }} à Heure : {{ req_infos.heure }}<br>
+        {% else %}
+            Il faut saisir les informations de la session sur <a href="{{ url_for('req_orsee') }}">cette page</a>.
+            {% if not participants %}
+            <br>Il faut charger le fichier avec la liste des participants sur <a href="{{ url_for('liste_participants') }}">cette page</a>.
+            {% endif %}
+        {% endif %}
+        </p>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+
+{% if participants %}
+    <div class="d-print-none text-right">
+        <button class="btn btn-primary" type="button" onclick="window.print();">Imprimer</button>
+        <p>&nbsp;</p>
+    </div>
+    {% for p in participants %}
+    <div class="card">
+        <div class="card-header">
+            {{ req_infos.expe }} - {{ req_infos.date }} - {{ req_infos.heure }} - Souche {{ souche_deb + loop.index }}
+        </div>
+        <div class="card-body">
+            <p class="card-text float-right">
+                {{ ville }}, le {{ req_infos.date }}<br>
+                Signature
+            </p>
+            <p class="card-text">
+                Forfait de déplacement <input type="checkbox">2&euro; <input type="checkbox">6&euro;<br>
+                <br>
+                Montant en chiffres :<br>
+                Montant en lettres : <br>
+                <br>
+                Remis à {{ p.nom }} {{ p.prenom }}<br>
+            </p>
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+
+    {% if loop.index % 5 == 0 %}
+        <div style='page-break-after: always'></div>
+    {% endif %}
+
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,13 +1,22 @@
-click==7.1.1
-Flask==1.1.1
-Flask-WTF==0.14.3
-itsdangerous==1.1.0
-Jinja2==2.11.1
-MarkupSafe==1.1.1
-numpy==1.18.2
-pandas==1.0.3
-python-dateutil==2.8.1
-pytz==2019.3
-six==1.14.0
-Werkzeug==1.0.0
-WTForms==2.2.1
+Package         Version            
+--------------- -------------------
+certifi         2019.11.28         
+click           7.1.1              
+Flask           1.1.1              
+Flask-WTF       0.14.3             
+itsdangerous    1.1.0              
+Jinja2          2.11.1             
+MarkupSafe      1.1.1              
+mkl-fft         1.0.15             
+mkl-random      1.1.0              
+mkl-service     2.3.0              
+numpy           1.18.1             
+pandas          1.0.2              
+pip             20.0.2             
+python-dateutil 2.8.1              
+pytz            2019.3             
+setuptools      46.0.0.post20200309
+six             1.14.0             
+Werkzeug        1.0.0              
+wheel           0.34.2             
+WTForms         2.2.1              
