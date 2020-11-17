@@ -125,4 +125,5 @@ def create_xls(infos_session, participants):
         "SUMIF(E5:E{}, 2)".format(4 + nombre_a_creer)), format_total_money)
     ws.write(4 + nombre_a_creer + 3, 4, xlwt.Formula(
         "SUMIF(E5:E{}, 6)".format(4 + nombre_a_creer)), format_total_money)
-    wb.save(f"/tmp/{infos_session['date_for_file']}_{infos_session['heure_for_file']}_{infos_session['expe']}.xlsx")
+    wb.save(
+        f"{config.DOSSIER_COMPTA}/{infos_session['date_for_file']}_{infos_session['heure_for_file']}_{infos_session['expe']}.xlsx")
