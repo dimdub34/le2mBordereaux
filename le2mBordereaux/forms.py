@@ -28,3 +28,7 @@ class BordereauxViergesForm(FlaskForm):
     nombre = IntegerField(label="Nombre de bordereaux à créer", validators=[DataRequired(), NumberRange(min=1, max=100)])
     souche_deb = IntegerField(label="Numéro de la première souche", validators=[DataRequired(), NumberRange(min=1, max=100)])
     submit = SubmitField("Valider")
+
+
+class BordereauxCreateCompta(FlaskForm):
+    submit = SubmitField("Créer le fichier de compta")

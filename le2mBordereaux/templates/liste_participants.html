@@ -54,11 +54,12 @@
 <table class="table table-sm table-striped">
     <thead>
     <tr>
-        <th>ORSEE-ID</th>
-        <th>Genre</th>
+        <th></th>
         <th>Nom</th>
         <th>Prenom</th>
+        <th>ORSEE-ID</th>
         <th>Mail</th>
+        <th>Genre</th>
         <th>Déb. Etud. Sup</th>
         <th>Discipline</th>
     </tr>
@@ -66,11 +67,12 @@
     <tbody>
     {% for p in participants %}
     <tr>
-        <td>{{ p.uid }}</td>
-        <td>{{ p.genre }}</td>
+        <td>{{ loop.index }}</td>
         <td>{{ p.nom }}</td>
         <td>{{ p.prenom }}</td>
+        <td>{{ p.uid }}</td>
         <td>{{ p.mail }}</td>
+        <td>{{ p.genre }}</td>
         <td>{{ p.deb_etudes }}</td>
         <td>{{ p.etudes }}</td>
     </tr>

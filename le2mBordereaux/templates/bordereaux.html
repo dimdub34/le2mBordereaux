@@ -20,27 +20,35 @@
 <p>&nbsp;</p>
 
 {% if participants %}
-    <div class="d-print-none text-right">
-        <button class="btn btn-primary" type="button" onclick="window.print();">Imprimer</button>
-        <p>&nbsp;</p>
+    <div class="d-print-none text-left">
+        <form class="form-inline" action="{{ url_for('bordereaux') }}" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <button class="btn btn-primary" type="button" onclick="window.print();">Imprimer</button>&nbsp;
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+        <p class="text-info">
+            {% if compta_cree %}
+            Fichier enregistré dans /tmp
+            {% endif %}
+        </p>
     </div>
     {% for p in participants %}
     <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-secondary text-white">
             {{ req_infos.expe }} - {{ req_infos.date }} - {{ req_infos.heure }} - Souche {{ souche_deb + loop.index }}
         </div>
         <div class="card-body">
             <p class="card-text float-right">
                 {{ ville }}, le {{ req_infos.date }}<br>
-                Signature
+                <strong>Signature</strong>
             </p>
             <p class="card-text">
-                Forfait de déplacement <input type="checkbox">2&euro; <input type="checkbox">6&euro;<br>
+                Forfait de déplacement <input type="checkbox">&nbsp;2&euro; <input type="checkbox">&nbsp;6&euro;<br>
                 <br>
                 Montant en chiffres :<br>
                 Montant en lettres : <br>
                 <br>
-                Remis à {{ p.nom }} {{ p.prenom }}<br>
+                Remis à <strong>{{ p.nom }} {{ p.prenom }}</strong><br>
             </p>
         </div>
     </div>
