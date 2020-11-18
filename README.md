@@ -4,7 +4,9 @@ le2mBordereaux to print the list of participants, edit the vouchers and create t
 financial service.
 
 To start the application, you can create a *.sh script in your bin directory and write
+```shell script
 #! /bin/sh
 google-chrome 127.0.0.1:5000; ~/anaconda3/envs/le2mBordereaux/bin/python ~/path_to_le2mBordereaux/main.py
+```
 
 Packages needed for the application are in requirements.txt.
