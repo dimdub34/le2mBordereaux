@@ -41,7 +41,7 @@ def req_orsee_result():
 @app.route("/liste_participants", methods=["GET", "POST"])
 def liste_participants():
     form = UploadParticipantsForm()
-    participants = []
+    participants = session.get("participants", [])
     if form.validate_on_submit():
         input_file = form.input_file.data
         df = pd.read_csv(input_file, names=["uid", "genre", "nom", "prenom", "mail", "deb_etudes", "etudes"])
@@ -74,8 +74,12 @@ def bordereaux_vierges():
     if form.validate_on_submit():
         nb_vierges = form.nombre.data
         vierges = [dict(nom="", prenom="") for _ in range(nb_vierges)]
+        session["participants"] = vierges
+        form_bord = BordereauxCreateCompta()
         return render_template("bordereaux.html", title="Bordereaux", req_infos=session.get("req_infos", None),
-                               participants=vierges, ville=config.VILLE, souche_deb=form.souche_deb.data - 1)
+                               participants=session.get("participants", None), ville=config.VILLE,
+                               souche_deb=form.souche_deb.data - 1,
+                               form=form_bord)
     return render_template("bordereaux_vierges.html", form=form, title="Bordereaux",
                            req_infos=session.get("req_infos", None))
 
